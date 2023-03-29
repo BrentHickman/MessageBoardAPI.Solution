@@ -19,6 +19,7 @@ namespace MessageBoardApi.Controllers
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Message>>> Get()
     {
+      IQueryable<Message> query = _db.Messages.AsQueryable();
       return await _db.Messages.ToListAsync();
     }
 
