@@ -26,17 +26,17 @@ namespace MessageBoardApi.Controllers
 
     // GET: api/Groups/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<Group>> GetGroup(int id)
+    public async Task<ActionResult<IEnumerable<Group>>> GetGroup(int id)
     {
-      Group group = await _db.Groups.FindAsync(id);
-
+    IQueryable<Group> query = _db.Groups.Include(group => group.Messages).AsQueryable();
+      var group = await query.ToListAsync();
       if (group == null)
       {
         return NotFound();
       }
-
       return group;
     }
+
     // POST api/groups
     [HttpPost]
     public async Task<ActionResult<Group>> Post(Group group)
