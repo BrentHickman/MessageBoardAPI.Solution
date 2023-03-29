@@ -31,23 +31,6 @@ namespace MessageBoardApi.Migrations
                     b.HasKey("GroupId");
 
                     b.ToTable("Groups");
-
-                    b.HasData(
-                        new
-                        {
-                            GroupId = 1,
-                            GroupName = "Group 1"
-                        },
-                        new
-                        {
-                            GroupId = 2,
-                            GroupName = "Group 2"
-                        },
-                        new
-                        {
-                            GroupId = 3,
-                            GroupName = "Group 3"
-                        });
                 });
 
             modelBuilder.Entity("MessageBoardApi.Models.Message", b =>
@@ -70,29 +53,6 @@ namespace MessageBoardApi.Migrations
                     b.HasIndex("GroupId");
 
                     b.ToTable("Messages");
-
-                    b.HasData(
-                        new
-                        {
-                            MessageId = 1,
-                            GroupId = 1,
-                            MessageText = "Hello World",
-                            PostDate = new DateTime(2023, 3, 29, 10, 32, 14, 728, DateTimeKind.Local).AddTicks(5550)
-                        },
-                        new
-                        {
-                            MessageId = 2,
-                            GroupId = 2,
-                            MessageText = "Whattup World",
-                            PostDate = new DateTime(2011, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            MessageId = 3,
-                            GroupId = 3,
-                            MessageText = "Hi There World",
-                            PostDate = new DateTime(2012, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("MessageBoardApi.Models.Message", b =>
