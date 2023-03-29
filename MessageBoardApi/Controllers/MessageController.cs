@@ -52,9 +52,9 @@ namespace MessageBoardApi.Controllers
     }
         // PUT: api/Messages/5
     [HttpPut("{id}")]
-    public async Task<IActionResult> Put(int id, Message message)
+    public async Task<IActionResult> Put(int id, string userName, Message message)
     {
-      if (id != message.MessageId)
+      if (id != message.MessageId || userName != message.UserName)
       {
         return BadRequest();
       }
@@ -85,10 +85,10 @@ namespace MessageBoardApi.Controllers
     }
         // DELETE: api/Messages/5
     [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteMessage(int id)
+    public async Task<IActionResult> DeleteMessage(int id, string userName)
     {
       Message message = await _db.Messages.FindAsync(id);
-      if (message == null)
+      if (message == null || userName != message.UserName)
       {
         return NotFound();
       }
