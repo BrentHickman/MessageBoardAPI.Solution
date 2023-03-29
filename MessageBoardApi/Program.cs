@@ -1,13 +1,11 @@
-using CretaceousApi.Models;
+using MessageBoardApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<CretaceousApiContext>(
+builder.Services.AddDbContext<MessageBoardApiContext>(
                   dbContextOptions => dbContextOptions
                     .UseMySql(
                       builder.Configuration["ConnectionStrings:DefaultConnection"], 
@@ -21,16 +19,15 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-else 
-{
-  app.UseHttpsRedirection();
+else{
+    app.UseHttpsRedirection();
 }
-
 app.UseAuthorization();
 
 app.MapControllers();

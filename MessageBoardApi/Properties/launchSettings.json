@@ -4,12 +4,12 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:17882",
-      "sslPort": 44326
+      "applicationUrl": "http://localhost:27260",
+      "sslPort": 44377
     }
   },
   "profiles": {
-    "CretaceousApi": {
+    "MessageBoardApi": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
