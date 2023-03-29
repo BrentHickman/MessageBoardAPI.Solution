@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MessageBoardApi.Migrations
 {
     [DbContext(typeof(MessageBoardApiContext))]
-    [Migration("20230329170150_SeedDataandRemoveGroupFromMessage")]
-    partial class SeedDataandRemoveGroupFromMessage
+    [Migration("20230329202946_DataAnnotations")]
+    partial class DataAnnotations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,24 +32,7 @@ namespace MessageBoardApi.Migrations
 
                     b.HasKey("GroupId");
 
-                    b.ToTable("Group");
-
-                    b.HasData(
-                        new
-                        {
-                            GroupId = 1,
-                            GroupName = "Group 1"
-                        },
-                        new
-                        {
-                            GroupId = 2,
-                            GroupName = "Group 2"
-                        },
-                        new
-                        {
-                            GroupId = 3,
-                            GroupName = "Group 3"
-                        });
+                    b.ToTable("Groups");
                 });
 
             modelBuilder.Entity("MessageBoardApi.Models.Message", b =>
@@ -72,29 +55,6 @@ namespace MessageBoardApi.Migrations
                     b.HasIndex("GroupId");
 
                     b.ToTable("Messages");
-
-                    b.HasData(
-                        new
-                        {
-                            MessageId = 1,
-                            GroupId = 1,
-                            MessageText = "Hello World",
-                            PostDate = new DateTime(2010, 1, 1, 8, 0, 15, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            MessageId = 2,
-                            GroupId = 2,
-                            MessageText = "Whattup World",
-                            PostDate = new DateTime(2011, 2, 10, 8, 0, 15, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            MessageId = 3,
-                            GroupId = 3,
-                            MessageText = "Hi There World",
-                            PostDate = new DateTime(2012, 3, 15, 8, 0, 15, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("MessageBoardApi.Models.Message", b =>

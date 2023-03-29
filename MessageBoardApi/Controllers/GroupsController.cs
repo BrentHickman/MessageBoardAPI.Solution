@@ -19,7 +19,9 @@ namespace MessageBoardApi.Controllers
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Group>>> Get()
     {
-      return await _db.Groups.ToListAsync();
+    IQueryable<Group> query = _db.Groups.Include(group => group.Messages).AsQueryable();
+      var groups = await query.ToListAsync();
+      return groups;
     }
 
     // GET: api/Groups/5

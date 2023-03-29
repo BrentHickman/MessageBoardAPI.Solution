@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MessageBoardApi.Migrations
 {
     [DbContext(typeof(MessageBoardApiContext))]
-    [Migration("20230329164319_Initial")]
-    partial class Initial
+    [Migration("20230329184651_TestData")]
+    partial class TestData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,7 +32,14 @@ namespace MessageBoardApi.Migrations
 
                     b.HasKey("GroupId");
 
-                    b.ToTable("Group");
+                    b.ToTable("Groups");
+
+                    b.HasData(
+                        new
+                        {
+                            GroupId = 1,
+                            GroupName = "g1"
+                        });
                 });
 
             modelBuilder.Entity("MessageBoardApi.Models.Message", b =>
@@ -55,17 +62,24 @@ namespace MessageBoardApi.Migrations
                     b.HasIndex("GroupId");
 
                     b.ToTable("Messages");
+
+                    b.HasData(
+                        new
+                        {
+                            MessageId = 1,
+                            GroupId = 1,
+                            MessageText = "FSDFSDFASDFASD",
+                            PostDate = new DateTime(2023, 3, 29, 0, 0, 0, 0, DateTimeKind.Local)
+                        });
                 });
 
             modelBuilder.Entity("MessageBoardApi.Models.Message", b =>
                 {
-                    b.HasOne("MessageBoardApi.Models.Group", "Group")
+                    b.HasOne("MessageBoardApi.Models.Group", null)
                         .WithMany("Messages")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Group");
                 });
 
             modelBuilder.Entity("MessageBoardApi.Models.Group", b =>
