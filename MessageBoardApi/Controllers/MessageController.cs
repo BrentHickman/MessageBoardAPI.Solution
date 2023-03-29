@@ -17,10 +17,15 @@ namespace MessageBoardApi.Controllers
 
     // GET api/Messages
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<Message>>> Get()
+    public async Task<ActionResult<IEnumerable<Message>>> Get(DateTime postDate)
     {
       IQueryable<Message> query = _db.Messages.AsQueryable();
-      return await _db.Messages.ToListAsync();
+      if (postDate != null)
+      {
+        query = query.Where(entry => entry.PostDate == postDate);
+      }
+      
+      return await query.ToListAsync();
     }
 
     // GET: api/Messages/5
