@@ -20,7 +20,8 @@ namespace MessageBoardApi.Controllers
     public async Task<ActionResult<IEnumerable<Message>>> Get(DateTime postDate)
     {
       IQueryable<Message> query = _db.Messages.AsQueryable();
-      if (postDate != null)
+
+      if (postDate != new DateTime())
       {
         query = query.Where(entry => entry.PostDate == postDate);
       }

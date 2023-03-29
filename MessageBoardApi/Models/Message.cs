@@ -11,6 +11,7 @@ public class Message
 
     public string MessageText { get; set; }
     public DateTime PostDate { get; set; }
+     public string UserName { get; set; }
 
 
 }
