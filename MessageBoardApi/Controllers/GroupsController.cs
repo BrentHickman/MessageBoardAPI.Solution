@@ -4,10 +4,8 @@ using MessageBoardApi.Models;
 
 namespace MessageBoardApi.Controllers
 {
+  [Route("api/[controller]")]
   [ApiController]
-  [Route("api/v{version:apiVersion}/[controller]")]
-  [ApiVersion("1.0")]
-  [ApiVersion("2.0")]
   public class GroupsController : ControllerBase
   {
     private readonly MessageBoardApiContext _db;
