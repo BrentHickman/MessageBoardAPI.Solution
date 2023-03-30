@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MessageBoardApi.Models;
 
-namespace MessageBoardApi.Controllers
+namespace MessageBoardApi.Controllers.v2
 {
   [ApiController]
   [Route("api/v{version:apiVersion}/[controller]")]
