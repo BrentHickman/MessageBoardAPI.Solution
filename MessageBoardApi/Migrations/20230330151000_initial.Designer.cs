@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MessageBoardApi.Migrations
 {
     [DbContext(typeof(MessageBoardApiContext))]
-    [Migration("20230329202946_DataAnnotations")]
-    partial class DataAnnotations
+    [Migration("20230330151000_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -49,6 +49,9 @@ namespace MessageBoardApi.Migrations
 
                     b.Property<DateTime>("PostDate")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("longtext");
 
                     b.HasKey("MessageId");
 

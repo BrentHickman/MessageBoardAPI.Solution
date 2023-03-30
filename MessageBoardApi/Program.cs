@@ -2,6 +2,17 @@ using MessageBoardApi.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy  =>
+                      {
+                          policy.WithOrigins("https://localhost:5001",
+                                              "http://localhost:5000");
+                      });
+});
 
 builder.Services.AddControllers();
 
@@ -28,6 +39,7 @@ if (app.Environment.IsDevelopment())
 else{
     app.UseHttpsRedirection();
 }
+app.UseCors(MyAllowSpecificOrigins);
 app.UseAuthorization();
 
 app.MapControllers();

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace MessageBoardApi.Migrations
 {
-    public partial class TestData : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,10 +34,12 @@ namespace MessageBoardApi.Migrations
                 {
                     MessageId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    GroupId = table.Column<int>(type: "int", nullable: false),
                     MessageText = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     PostDate = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    GroupId = table.Column<int>(type: "int", nullable: false)
+                    UserName = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
@@ -50,16 +52,6 @@ namespace MessageBoardApi.Migrations
                         onDelete: ReferentialAction.Cascade);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.InsertData(
-                table: "Groups",
-                columns: new[] { "GroupId", "GroupName" },
-                values: new object[] { 1, "g1" });
-
-            migrationBuilder.InsertData(
-                table: "Messages",
-                columns: new[] { "MessageId", "GroupId", "MessageText", "PostDate" },
-                values: new object[] { 1, 1, "FSDFSDFASDFASD", new DateTime(2023, 3, 29, 0, 0, 0, 0, DateTimeKind.Local) });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Messages_GroupId",
